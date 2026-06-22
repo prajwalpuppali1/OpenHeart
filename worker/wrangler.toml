@@ -1,0 +1,6 @@
+name = "openheart-clinics"
+main = "worker.js"
+compatibility_date = "2026-06-12"
+
+# Secret (never commit): run `npx wrangler secret put HRSA_TOKEN`
+# Local dev reads it from .dev.vars
