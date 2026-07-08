@@ -35,7 +35,8 @@
       opts: [['Mostly fresh or home-cooked', 0], ['A real mix', 1], ['Mostly fast food or packaged', 2]] },
     { cat: 'Your habits', q: 'How would you describe your weight?',
       opts: [['Around a healthy range', 0], ['Somewhat overweight', 1], ['Well above a healthy range', 2]] },
-    { cat: 'Right now', q: 'Have you had any of these lately, or right now?',
+    { cat: 'Right now', q: 'Have you had any of these lately, or right now?', multi: true,
+      help: 'Check any that apply.',
       opts: [['Chest pain, pressure, or tightness', 3], ['Short of breath at rest or with light activity', 2], ['Dizzy or lightheaded often', 1], ['None of these', 0]] },
     { cat: 'Your care', q: 'When did you last see a doctor for a check-up?',
       opts: [['Within the last year', 0], ['1–3 years ago', 1], ['More than 3 years ago', 2], ['Never', 2]] },
@@ -157,6 +158,53 @@
         state.zip = '';
         finish();
       });
+    } else if (q.multi) {
+      html +=
+        '<h2 class="q-title" id="qtitle" tabindex="-1">' + q.q + '</h2>' +
+        (q.help ? '<p class="q-help">' + q.help + '</p>' : '') +
+        '<fieldset class="opts" aria-labelledby="qtitle">';
+      var sel = (state.picks[i] && state.picks[i].idxs) || [];
+      var noneIdx = -1;
+      q.opts.forEach(function (opt, oi) {
+        if (opt[1] === 0) noneIdx = oi;
+        var checked = sel.indexOf(oi) !== -1 ? ' checked' : '';
+        html +=
+          '<div class="opt">' +
+            '<input type="checkbox" id="o' + oi + '" value="' + oi + '"' + checked + '>' +
+            '<label for="o' + oi + '"><span class="checkbox" aria-hidden="true"></span>' + opt[0] + '</label>' +
+          '</div>';
+      });
+      html += '</fieldset>' +
+        '<div class="q-nav">' +
+          (i > 0 ? '<button type="button" class="back-link" id="qback">← Back</button>' : '<span></span>') +
+          '<button type="button" class="btn btn-primary" id="qnext">Continue</button>' +
+        '</div>';
+      qcard.innerHTML = html;
+
+      var boxes = qcard.querySelectorAll('input[type=checkbox]');
+      Array.prototype.forEach.call(boxes, function (bx) {
+        bx.addEventListener('change', function () {
+          var oi = parseInt(bx.value, 10);
+          if (bx.checked && oi === noneIdx) {
+            Array.prototype.forEach.call(boxes, function (o) { if (o !== bx) o.checked = false; });
+          } else if (bx.checked && noneIdx !== -1) {
+            boxes[noneIdx].checked = false;
+          }
+        });
+      });
+
+      document.getElementById('qnext').addEventListener('click', function () {
+        var idxs = [], maxPts = 0;
+        Array.prototype.forEach.call(boxes, function (bx) {
+          if (bx.checked) {
+            var oi = parseInt(bx.value, 10);
+            idxs.push(oi);
+            if (q.opts[oi][1] > maxPts) maxPts = q.opts[oi][1];
+          }
+        });
+        state.picks[i] = { idxs: idxs, pts: maxPts };
+        advance();
+      });
     } else {
       html +=
         '<h2 class="q-title" id="qtitle" tabindex="-1">' + q.q + '</h2>' +
@@ -231,7 +279,8 @@
     var s = score();
     var tierKey = s <= 8 ? 'low' : s <= 16 ? 'mod' : 'high';
     var t = TIERS[tierKey];
-    var chestPain = state.picks[CHEST_PAIN_INDEX] && state.picks[CHEST_PAIN_INDEX].pts === 3;
+    var cp = state.picks[CHEST_PAIN_INDEX];
+    var chestPain = !!(cp && ((cp.idxs && cp.idxs.indexOf(0) !== -1) || cp.pts === 3));
     var deg = (s / 25 * 180 - 90).toFixed(1);
 
     var html = '';
