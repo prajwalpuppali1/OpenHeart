@@ -58,7 +58,7 @@ p { margin: 0; }
 .hidden { display: none !important; }
 
 /* anchor targets clear the sticky header */
-#how, #who { scroll-margin-top: 88px; }
+#how, #who, #about, #pillars, #numbers { scroll-margin-top: 88px; }
 
 /* ---------- header ---------- */
 .site-head {
@@ -181,13 +181,56 @@ p { margin: 0; }
 .step h3 { font-size: 1.34rem; margin: 18px 0 11px; }
 .step p { color: var(--text); font-size: .99rem; }
 
+/* ---------- about ---------- */
+.about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
+.about-grid h2 { font-size: clamp(2rem, 4.4vw, 2.9rem); }
+.about-body p { color: var(--text); font-size: 1.08rem; line-height: 1.7; }
+.about-body p + p { margin-top: 18px; }
+
+/* ---------- pillars ---------- */
+.pillars-section { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.pillar {
+  background: #fff;
+  border: 1px solid var(--line); border-radius: var(--rad-lg);
+  padding: 32px 30px;
+  box-shadow: 0 4px 20px rgba(44, 62, 80, .05);
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.pillar:hover { border-color: var(--line-2); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(44, 62, 80, .09); }
+.pillar-ic { width: 34px; height: 34px; color: var(--red); }
+.pillar h3 { font-size: 1.34rem; margin: 14px 0 10px; }
+.pillar p { color: var(--text); font-size: .99rem; }
+
+/* ---------- know your numbers ---------- */
+.numbers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.numbers-grid h2 { font-size: clamp(1.8rem, 3.8vw, 2.5rem); }
+.bp-scale { display: grid; gap: 12px; }
+.bp-row {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  border: 1.5px solid; border-radius: var(--rad);
+  padding: 16px 20px;
+}
+.bp-range { font-family: var(--display); font-weight: 800; font-size: 1.15rem; white-space: nowrap; }
+.bp-label { color: var(--text); font-size: .98rem; }
+.bp-label b { color: inherit; }
+.bp-good { background: var(--green-bg); border-color: var(--green); }
+.bp-good .bp-range, .bp-good .bp-label b { color: var(--green); }
+.bp-elev { background: var(--amber-bg); border-color: var(--amber); }
+.bp-elev .bp-range, .bp-elev .bp-label b { color: var(--amber); }
+.bp-high { background: var(--rose-bg); border-color: var(--red); }
+.bp-high .bp-range, .bp-high .bp-label b { color: var(--red); }
+.bp-crisis { background: var(--red); border-color: var(--red-deep); }
+.bp-crisis .bp-range, .bp-crisis .bp-label, .bp-crisis .bp-label b { color: #fff; }
+
 .who { padding-top: 0; }
 .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
 .who-note { color: var(--text); margin-top: 20px; max-width: 44ch; }
+.who-promise { font-family: var(--display); font-weight: 700; color: var(--red); margin-top: 18px; font-size: 1.12rem; }
 .who-list { list-style: none; margin: 0; padding: 0; }
 .who-list li {
   font-family: var(--display); font-weight: 700; letter-spacing: -.01em;
-  font-size: clamp(1.25rem, 2.4vw, 1.55rem); color: var(--ink);
+  font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.35; color: var(--ink);
   padding: 20px 0 20px 40px; border-bottom: 1px solid var(--line); position: relative;
 }
 .who-list li:first-child { padding-top: 6px; }
@@ -212,6 +255,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 66px; background: va
 .foot-brand .brand-mark { align-self: center; width: 22px; height: 22px; }
 .foot-brand .brand-name { font-size: 1.15rem; color: var(--ink); }
 .foot-small { color: var(--muted); font-size: .9rem; max-width: 72ch; margin-top: 10px; }
+.foot-small strong { color: var(--red); }
 .foot-emergency { margin-top: 16px; font-size: .98rem; color: var(--text); }
 .foot-emergency strong { color: var(--red); }
 
@@ -360,6 +404,8 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 66px; background: va
 /* ---------- responsive ---------- */
 @media (max-width: 880px) {
   .steps { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: 1fr; }
+  .about-grid, .numbers-grid { grid-template-columns: 1fr; gap: 28px; }
   .who-grid { grid-template-columns: 1fr; gap: 28px; }
   .hero { padding: 64px 0 116px; }
   .score-wrap { grid-template-columns: 1fr; gap: 20px; justify-items: start; }
