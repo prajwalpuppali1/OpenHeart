@@ -70,7 +70,8 @@
         'Get a free blood-pressure check once a year. Many pharmacies and clinics do it at no cost.',
         'Come back and re-check if your health or symptoms change.'
       ],
-      links: ['aha', 'hrsa']
+      links: ['aha', 'hrsa'],
+      next: { hash: '#/education', label: 'Keep what you have', sub: 'Short, plain-language reads on protecting your heart' }
     },
     mod: {
       name: 'Moderate risk',
@@ -82,7 +83,8 @@
         'Bring your score and ask: “What should I work on first?”',
         'If you ever feel chest pain or real shortness of breath, treat it as urgent. Don’t wait.'
       ],
-      links: ['hrsa', 'teladoc', 'mdlive', 'aha']
+      links: ['hrsa', 'teladoc', 'mdlive', 'aha'],
+      next: { hash: '#/access', label: 'Here’s where to go next', sub: 'Clinics that will see you, insured or not' }
     },
     high: {
       name: 'Higher risk',
@@ -94,15 +96,16 @@
         'If medication becomes part of your plan, NeedyMeds can help cover the cost.',
         'If this feels heavy, the SAMHSA helpline is free, confidential, and open 24/7.'
       ],
-      links: ['hrsa', 'needy', 'samhsa']
+      links: ['hrsa', 'needy', 'samhsa'],
+      next: { hash: '#/access', label: 'Here’s where to go next', sub: 'Clinics that will see you, insured or not' }
     }
   };
 
-  var views = {
-    home: document.getElementById('view-home'),
-    quiz: document.getElementById('view-quiz'),
-    results: document.getElementById('view-results')
-  };
+  // Each '#/name' route is a <section id="view-name">; show() reveals one of them.
+  var views = {};
+  ['home', 'about', 'prevention', 'education', 'access', 'recovery', 'involved', 'quiz', 'results']
+    .forEach(function (n) { views[n] = document.getElementById('view-' + n); });
+
   var qcard = document.getElementById('qcard');
   var qcount = document.getElementById('qcount');
   var qbar = document.getElementById('qbar');
@@ -124,16 +127,40 @@
     render();
   }
 
+  /* Routing. '#/name' picks a view. A bare '#anchor' is an in-page scroll
+     target, so it must not steal the view from whatever is already showing. */
+  function route() {
+    var h = window.location.hash;
+    if (h.charAt(1) !== '/') {
+      if (views.home.classList.contains('hidden')) {
+        show('home');
+        var el = h.length > 1 && document.getElementById(h.slice(1));
+        if (el) el.scrollIntoView();
+      }
+      return;
+    }
+    var name = h.slice(2);
+    if (name === 'check') { startQuiz(); return; }
+    show(views[name] && name !== 'results' ? name : 'home');
+  }
+
+  function go(hash) {
+    if (window.location.hash === hash) route();
+    else window.location.hash = hash;
+  }
+
   function quizInProgress() {
     return !views.quiz.classList.contains('hidden') && state.picks.some(function (p) { return p !== null; });
   }
 
-  function render() {
+  // back === true when the user went backwards, so the card enters from the
+  // side it left toward (enter and exit share one path).
+  function render(back) {
     var i = state.i;
     var q = QUESTIONS[i];
     qcount.textContent = (i + 1) + ' of ' + QUESTIONS.length;
     qbar.setAttribute('aria-valuenow', String(i + 1));
-    qfill.style.width = ((i + 1) / QUESTIONS.length * 100) + '%';
+    qfill.style.transform = 'scaleX(' + ((i + 1) / QUESTIONS.length) + ')';
 
     var html = '<p class="q-cat">' + q.cat + '</p>';
 
@@ -241,12 +268,12 @@
       });
     }
 
-    var back = document.getElementById('qback');
-    if (back) back.addEventListener('click', function () { state.i--; render(); });
+    var backBtn = document.getElementById('qback');
+    if (backBtn) backBtn.addEventListener('click', function () { state.i--; render(true); });
 
-    qcard.classList.remove('enter');
+    qcard.classList.remove('enter', 'enter-back');
     void qcard.offsetWidth;
-    qcard.classList.add('enter');
+    qcard.classList.add(back ? 'enter-back' : 'enter');
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
@@ -312,6 +339,16 @@
 
     html += '<div class="tier-card t-' + t.cls + '">' + t.msg + '</div>';
 
+    // A result must never dead-end: every tier routes onward to a page.
+    html +=
+      '<a class="next-step" href="' + t.next.hash + '">' +
+        '<span>' +
+          '<span class="next-eyebrow">Where to go from here</span>' +
+          '<span class="next-label">' + t.next.label + '</span>' +
+          '<span class="next-sub">' + t.next.sub + '</span>' +
+        '</span>' + ARROW_SVG +
+      '</a>';
+
     html += '<h2 class="res-h">Do this next</h2><ul class="checklist">';
     t.steps.forEach(function (stp) {
       html += '<li>' + CHECK_SVG + '<span>' + stp + '</span></li>';
@@ -349,8 +386,8 @@
     resbody.innerHTML = html;
     show('results');
 
-    document.getElementById('res-restart').addEventListener('click', startQuiz);
-    document.getElementById('res-home').addEventListener('click', function () { show('home'); });
+    document.getElementById('res-restart').addEventListener('click', function () { go('#/check'); });
+    document.getElementById('res-home').addEventListener('click', function () { go('#/'); });
 
     window.requestAnimationFrame(function () {
       window.requestAnimationFrame(function () {
@@ -358,7 +395,7 @@
       });
     });
 
-    loadClinics(state.zip);
+    loadClinics(state.zip, 'cliniclist');
   }
 
   function esc(s) {
@@ -367,8 +404,8 @@
     });
   }
 
-  function loadClinics(zip) {
-    var box = document.getElementById('cliniclist');
+  function loadClinics(zip, boxId) {
+    var box = document.getElementById(boxId);
     var api = (typeof window.OPENHEART_API === 'string' && window.OPENHEART_API) || CLINIC_API;
     if (!box || !zip || !api) return;
 
@@ -410,13 +447,215 @@
       .catch(function () { window.clearTimeout(timer); fail(); });
   }
 
+  /* ---------- content pages (everything editable lives in content.js) ---------- */
+
+  var CONTENT = window.OH_CONTENT || {};
+
+  function paras(arr) {
+    return arr.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('');
+  }
+
+  // Education library. An entry with no body yet is listed as coming soon
+  // rather than opening onto an empty page.
+  function renderResources() {
+    var box = document.getElementById('reslib');
+    if (!box) return;
+    var list = CONTENT.resources || [];
+    box.innerHTML = list.map(function (r) {
+      if (r.draft || !(r.body && r.body.length)) {
+        return '<div class="res-item is-draft">' +
+          '<span class="rm-status is-soon">Coming soon</span>' +
+          '<h3>' + esc(r.title) + '</h3>' +
+          '<p class="res-s">' + esc(r.summary) + '</p>' +
+          '</div>';
+      }
+      return '<details class="res-item">' +
+        '<summary><span class="res-sum">' +
+          '<span class="res-t">' + esc(r.title) + '</span>' +
+          '<span class="res-s">' + esc(r.summary) + '</span>' +
+        '</span></summary>' +
+        '<div class="res-body">' + paras(r.body) + '</div>' +
+        (r.es
+          ? '<details class="res-es"><summary>Leer en espa&ntilde;ol</summary>' +
+              '<div class="res-body"><h3>' + esc(r.es.title) + '</h3>' + paras(r.es.body) + '</div>' +
+            '</details>'
+          : '') +
+        '</details>';
+    }).join('');
+  }
+
+  // Referral partners. Unconfirmed fields say so instead of inventing a value.
+  function renderPartners() {
+    var box = document.getElementById('partners');
+    if (!box) return;
+    var list = CONTENT.clinics || [];
+    if (!list.length) {
+      box.innerHTML = '<p class="clinic-status">Partner clinics are being confirmed. Use the ZIP search above in the meantime.</p>';
+      return;
+    }
+    box.innerHTML = list.map(function (c) {
+      var facts = [['Where', c.where], ['Phone', c.phone], ['Hours', c.hours],
+                   ['Cost', c.cost], ['What to expect', c.expect]]
+        .map(function (f) {
+          var val = '<em class="tbc">being confirmed</em>';
+          if (f[1] && f[0] === 'Phone') val = '<a href="tel:+1' + f[1].replace(/\D/g, '') + '">' + esc(f[1]) + '</a>';
+          else if (f[1]) val = esc(f[1]);
+          return '<dt>' + f[0] + '</dt><dd>' + val + '</dd>';
+        }).join('');
+      return '<div class="partner">' +
+        (c.anchor ? '<span class="rm-status is-live">Anchor partner</span>' : '') +
+        '<h3>' + esc(c.name) + '</h3>' +
+        (c.what ? '<p>' + esc(c.what) + '</p>' : '') +
+        '<dl class="partner-facts">' + facts + '</dl>' +
+        (c.site ? '<a class="res-link" href="' + esc(c.site) + '" target="_blank" rel="noopener"><span>Visit their website</span>' + ARROW_SVG + '</a>' : '') +
+        (c.draft ? '<p class="draft-note">We are still confirming these details with the clinic. Please call ahead before you travel.</p>' : '') +
+        '</div>';
+    }).join('');
+  }
+
+  var accessForm = document.getElementById('accessform');
+  if (accessForm) {
+    accessForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = document.getElementById('accesszip').value.trim();
+      var err = document.getElementById('accesserr');
+      if (/^\d{5}$/.test(v)) {
+        err.classList.remove('show');
+        loadClinics(v, 'accesslist');
+      } else {
+        err.classList.add('show');
+      }
+    });
+  }
+
+  /* ---------- home: scroll-scrubbed heart turntable ----------
+     A 48-frame render of a 3D heart, scrubbed across a fixed 640px of travel.
+     Frame count and step count are deliberately independent: the frames want
+     to be as smooth as the budget allows, while the three steps beside them
+     light in quarters, the fourth quarter being the release where nothing is
+     highlighted. Disabled on narrow screens and under reduced-motion, where
+     the sticky stage would hijack the page and the sequence is dead weight. */
+  (function () {
+    var FRAME_COUNT = 72;
+    var SEGMENTS = 4;            // 3 steps + 1 release quarter
+    var FRAME_PATH = 'img/heart/f%.webp';
+
+    var scrolly = document.querySelector('.nh-scrolly');
+    var wrap = scrolly && scrolly.querySelector('.nh-frames');
+    var beats = scrolly && Array.prototype.slice.call(scrolly.querySelectorAll('.nh-beats li'));
+    if (!scrolly || !wrap) return;
+
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var narrow = window.matchMedia('(max-width: 880px)');
+
+    var frames = Array.prototype.slice.call(wrap.querySelectorAll('img'));
+    var loaded = false;
+
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+    /* Preload every frame, then swap the static placeholder for the sequence.
+       Gate on the load event, NOT on decode(): decode() never settles for a
+       detached image in a backgrounded tab, which would leave the heart
+       permanently missing for anyone who opens the page in a background tab.
+       The timeout is a second guard so one dead frame cannot block the swap. */
+    function loadSequence() {
+      if (loaded || reduced.matches || narrow.matches) return;
+      loaded = true;
+
+      var pending = FRAME_COUNT;
+      var swapped = false;
+      var incoming = [];
+
+      function swap() {
+        if (swapped) return;
+        swapped = true;
+        var stat = wrap.querySelector('img');
+        for (var n = 0; n < incoming.length; n++) wrap.appendChild(incoming[n]);
+        frames = incoming;
+        if (stat) stat.remove();
+        current = -1;
+        onScroll();
+        /* Warm the decoder once the frames are attached. Not awaited: decode()
+           never settles for a detached image in a background tab, so this is a
+           best-effort smoothing pass, never a gate on showing the heart. */
+        for (var d = 0; d < frames.length; d++) {
+          if (frames[d].decode) frames[d].decode().catch(function () {});
+        }
+      }
+      function settle() { if (--pending <= 0) swap(); }
+
+      for (var n = 0; n < FRAME_COUNT; n++) {
+        var img = new Image();
+        img.alt = '';
+        img.decoding = 'async';
+        img.addEventListener('load', settle);
+        img.addEventListener('error', settle);
+        img.src = FRAME_PATH.replace('%', pad(n));
+        incoming.push(img);
+      }
+      window.setTimeout(swap, 8000);
+    }
+
+    /* Phones get the scrub too, just without the heart: the steps still
+       highlight and magnify as the section passes. Shorter travel there, since
+       there is no 72-frame turn to spend it on. Reduced-motion opts out of the
+       sticky stage entirely and reads as a plain stacked list. */
+    function setHeight() {
+      scrolly.style.height = reduced.matches ? ''
+        : narrow.matches ? 'calc(100svh + 420px)'
+        : 'calc(100vh + 640px)';
+    }
+
+    var current = -1, queued = false;
+    function paint() {
+      queued = false;
+      var travel = scrolly.offsetHeight - window.innerHeight;
+      if (travel <= 0) return;
+      var p = Math.min(1, Math.max(0, -scrolly.getBoundingClientRect().top / travel));
+
+      var i = Math.min(frames.length - 1, Math.floor(p * frames.length));
+      if (i !== current) {
+        if (current > -1 && frames[current]) frames[current].classList.remove('on');
+        frames[i].classList.add('on');
+        current = i;
+      }
+      // past the last step the section is releasing: b runs off the end of the
+      // list, nothing matches, and every step drops back to unhighlighted
+      var b = Math.floor(p * SEGMENTS);
+      for (var n = 0; n < beats.length; n++) beats[n].classList.toggle('on', n === b);
+    }
+    function onScroll() { if (!queued) { queued = true; requestAnimationFrame(paint); } }
+
+    setHeight();
+    loadSequence();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () { setHeight(); loadSequence(); onScroll(); });
+    if (reduced.addEventListener) reduced.addEventListener('change', setHeight);
+    paint();
+  }());
+
+  /* ---------- boot ---------- */
+
   Array.prototype.forEach.call(document.querySelectorAll('[data-start]'), function (btn) {
-    btn.addEventListener('click', startQuiz);
+    btn.addEventListener('click', function () { go('#/check'); });
   });
 
-  document.getElementById('brand').addEventListener('click', function (e) {
-    e.preventDefault();
-    if (quizInProgress() && !window.confirm('Leave your heart check? Your answers will be cleared.')) return;
-    show('home');
+  // Leaving mid-quiz throws the answers away, so confirm first and put the
+  // hash back if they decline (the revert fires hashchange again: ignore it).
+  var lastHash = window.location.hash;
+  var reverting = false;
+  window.addEventListener('hashchange', function () {
+    if (reverting) { reverting = false; return; }
+    if (quizInProgress() && !window.confirm('Leave your heart check? Your answers will be cleared.')) {
+      reverting = true;
+      window.location.hash = lastHash;
+      return;
+    }
+    lastHash = window.location.hash;
+    route();
   });
+
+  renderResources();
+  renderPartners();
+  route();
 })();

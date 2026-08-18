@@ -4,3 +4,9 @@ wrangler.jsonc
 .assetsignore
 .gitignore
 .claude/
+tools/
+.DS_Store
+.git/
+.wrangler/
+design/
+node_modules/
