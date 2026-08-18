@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OpenHeart: Free, anonymous heart-health check</title>
-<meta name="description" content="Check your heart-disease risk in 5 minutes. Free, anonymous, no sign-up. Built for uninsured and underserved Americans, with links to free and low-cost care near you.">
-<meta name="theme-color" content="#131b24">
-<meta property="og:title" content="OpenHeart: Check on your heart">
-<meta property="og:description" content="A free, anonymous 5-minute heart-health check. No name, no account, no cost, and real next steps near you.">
+<title>The Open Heart Initiative: free heart-risk check for Richmond</title>
+<meta name="description" content="In parts of Richmond, high blood pressure goes undetected until it becomes an emergency. Check your heart risk free in 5 minutes, anonymously, and find care that fits your life.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="The Open Heart Initiative">
+<meta property="og:description" content="A free, anonymous 5-minute heart-risk check, plus real next steps and free or low-cost care near you.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,193 +16,329 @@
 </head>
 <body>
 
+<a class="skip-to-main" href="#main">Skip to content</a>
+
 <header class="site-head">
   <div class="wrap head-inner">
-    <a class="brand" href="#" id="brand">
+    <a class="brand" href="#/" id="brand">
       <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21C9 18.8 3.6 14.7 2.3 10.6 1.2 7.2 3.3 4 6.6 4c2.1 0 3.6 1 4.6 2.6h1.6C13.8 5 15.3 4 17.4 4c3.3 0 5.4 3.2 4.3 6.6C20.4 14.7 15 18.8 12 21Z" fill="#c0392b"/><polyline points="4.5,11.5 9,11.5 10.6,8.6 12.6,14.2 14.2,11.5 19.5,11.5" fill="none" stroke="#f3f6f9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span class="brand-name">OpenHeart</span>
       <span class="brand-sub">Initiative</span>
     </a>
-    <nav class="nav">
-      <a href="#about">About</a>
-      <a href="#how">How it works</a>
-      <a href="#who">Who it's for</a>
-      <a href="#numbers">Your numbers</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#/about">About</a>
+      <a href="#/prevention">Prevention</a>
+      <a href="#/education">Education</a>
+      <a href="#/access">Find care</a>
+      <a href="#/recovery">Recovery</a>
     </nav>
-    <button class="btn btn-primary btn-sm" data-start>Start the check</button>
+    <button class="btn btn-primary btn-sm" data-start>Check your heart risk</button>
   </div>
 </header>
 
-<main>
+<main id="main">
 
 <!-- ============ HOME ============ -->
 <section id="view-home">
 
-  <div class="hero">
-    <div class="wrap hero-inner">
-      <p class="eyebrow reveal d1">Free &middot; Anonymous &middot; About 5 minutes</p>
-      <h1 class="hero-title reveal d2">Check on your <span class="accent">heart</span>.</h1>
-      <p class="lede reveal d3">Heart disease is the #1 cause of death in America, and one of the most preventable. Answer 13 plain-English questions and get your personal results, plus free and low-cost care options near you. No name. No account. No cost.</p>
-      <div class="hero-cta reveal d4">
-        <button class="btn btn-primary btn-lg" data-start>Start my heart check <svg class="btn-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <a class="btn btn-ghost btn-lg" href="#how">How it works</a>
+  <div class="nh-hero">
+    <div class="nh-hero-text">
+      <p class="eyebrow">Richmond, Virginia</p>
+      <h1 class="nh-h1">High blood pressure is quiet until the day it <span class="accent">isn't.</span></h1>
+      <p class="nh-lede">It has no symptoms you can feel. For a lot of people in Richmond, the first sign is the ambulance. Five minutes now tells you where you stand.</p>
+      <div class="nh-cta">
+        <button class="btn btn-primary btn-lg" data-start>Check your heart risk
+          <svg class="btn-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <a class="btn btn-ghost btn-lg" href="#how">See what happens</a>
       </div>
-      <div class="stats reveal d5">
-        <div class="stat"><b>#1</b><span>Cause of death in America</span></div>
-        <div class="stat"><b>5 min</b><span>Start to finish</span></div>
-        <div class="stat"><b>$0</b><span>Free, no insurance needed</span></div>
-      </div>
+      <p class="nh-note">Free, anonymous, no sign-up. A screening tool, not a diagnosis.</p>
     </div>
-    <svg class="ekg-hero" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true">
-      <path class="ekg-path" pathLength="1000" d="M0 66 H300 L322 54 L344 66 H490 L508 16 L526 100 L542 66 H820 L842 56 L864 66 H1010 L1028 20 L1046 98 L1062 66 H1440" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+    <div class="nh-hero-portrait">
+      <img src="img/hero-portrait.jpg" width="2200" height="1212"
+           alt="A man in his sixties pausing on a Richmond bridge at sunset, the city skyline behind him">
+    </div>
   </div>
 
-  <div class="strip">
+  <!-- scroll-scrubbed 3D turntable; steps light in quarters, then release -->
+  <div class="nh-scrolly" id="how">
+    <div class="nh-stage">
+      <!-- Static frame only. The 48-frame turntable is injected by app.js on
+           wide screens, so phones and reduced-motion never fetch 1.4MB. -->
+      <div class="nh-frames" aria-hidden="true">
+        <img class="on" src="img/heart/static.jpg" width="320" height="464" alt="">
+      </div>
+      <div>
+        <p class="eyebrow">What happens</p>
+        <h2 class="nh-h2">No clipboard, no waiting room, no bill.</h2>
+        <ol class="nh-beats">
+          <li class="on">
+            <h3>Answer thirteen questions</h3>
+            <p>Plain language, about your health and your family. Skip anything you would rather not answer.</p>
+          </li>
+          <li>
+            <h3>See where you stand</h3>
+            <p>A clear result and what it means, written to be read once and understood.</p>
+          </li>
+          <li>
+            <h3>Get somewhere to go next</h3>
+            <p>Enter a ZIP code and we list free and low-cost clinics near you, with phone numbers that work.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap nh-sec">
+    <div class="nh-demo">
+      <div>
+        <p class="eyebrow">The whole thing</p>
+        <h2 class="nh-h2">Thirteen questions, then somewhere to go.</h2>
+        <p class="nh-lede">No account, no email, no insurance card. The result and the clinic list arrive on the same screen.</p>
+      </div>
+      <div class="nh-phone" aria-hidden="true">
+        <span class="nh-side act"></span><span class="nh-side vup"></span>
+        <span class="nh-side vdn"></span><span class="nh-side pwr"></span><span class="nh-side cam"></span>
+        <div class="nh-bezel">
+          <div class="nh-screen">
+            <div class="nh-island"></div>
+            <!-- real capture of the results screen at phone width, not a mockup -->
+            <img class="nh-shot" src="img/phone-results.jpg" width="774" height="1788" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nh-close">
     <div class="wrap">
-      <p class="strip-label">Private by design</p>
-      <ul class="trust">
-        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>No sign-up</li>
-        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Nothing stored, ever</li>
-        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Reviewed with medical guidance</li>
+      <h2 class="nh-h2">Five minutes. Nothing to sign.</h2>
+      <p class="nh-lede">You will not be asked for a name, an email, or insurance. Nothing you enter leaves your phone.</p>
+      <button class="btn btn-primary btn-lg" data-start>Check your heart risk
+        <svg class="btn-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="wrap nh-band">
+    <div class="nh-facts">
+      <p>Heart disease is the <b>number one</b> cause of death in America.</p>
+      <p>This takes <b>five minutes</b> and costs <b>nothing</b>.</p>
+    </div>
+
+    <div class="nh-urgent">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1.8 20.5h20.4L12 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9.5v5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.6" r="1.25" fill="currentColor"/></svg>
+      <p><b>Chest pain, trouble breathing, or numbness on one side right now?</b> Do not use this tool. Call 911. This page can wait, that cannot.</p>
+    </div>
+
+    <div class="nh-trust">
+    <p class="eyebrow">Private by design</p>
+    <ul>
+      <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>No sign-up</li>
+      <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Nothing stored, ever</li>
+      <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Reviewed with medical guidance</li>
+    </ul>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="view-about" class="hidden">
+  <div class="page">
+    <div class="wrap wrap-tight">
+      <p class="eyebrow">About</p>
+      <h1 class="page-title">Who we are, and what this tool <span class="accent">is.</span></h1>
+
+      <h2 class="page-h">Our mission</h2>
+      <div class="todo">Mission statement to come: two or three sentences on cardiovascular health equity for underserved Richmond communities.</div>
+      <p class="page-p">The Open Heart Initiative is a student-founded organization bringing free heart health screenings, education, and care navigation to underserved communities in Richmond, VA.</p>
+      <p class="page-p">High blood pressure is called "the silent killer": it has no symptoms, and many people are living with it without knowing. We meet people where they already are, in barbershops, churches, and community spaces, check their numbers for free, and help connect anyone at risk to affordable care.</p>
+
+      <h2 class="page-h">The four pillars</h2>
+      <p class="page-p">Four pillars, and where each one honestly stands.</p>
+      <a class="nh-pillar" href="#/prevention">
+        <span class="nh-idx">01</span>
+        <span><h3>Prevention</h3><p>The risk tool, plus free blood pressure screenings at barbershops and churches around the city.</p></span>
+        <span class="nh-state">Live</span>
+      </a>
+      <a class="nh-pillar" href="#/education">
+        <span class="nh-idx">02</span>
+        <span><h3>Education</h3><p>Plain-language heart health reading, in English and Spanish.</p></span>
+        <span class="nh-state">Live</span>
+      </a>
+      <a class="nh-pillar" href="#/access">
+        <span class="nh-idx">03</span>
+        <span><h3>Access</h3><p>The referral path to real care, built with clinical partners in Richmond.</p></span>
+        <span class="nh-state wip">In progress</span>
+      </a>
+      <a class="nh-pillar" href="#/recovery">
+        <span class="nh-idx">04</span>
+        <span><h3>Recovery</h3><p>Follow-up and support for people already managing a heart condition.</p></span>
+        <span class="nh-state soon">Coming</span>
+      </a>
+
+      <h2 class="page-h">Who is behind it</h2>
+      <div class="todo">Founder bio to come, plus clinical advisors once confirmed.</div>
+
+      <h2 class="page-h">What the risk tool is based on</h2>
+      <div class="todo">The published risk framework and guidelines the tool draws on, named plainly, to come.</div>
+      <p class="page-p">The tool asks thirteen questions about age, family history, blood pressure, cholesterol, tobacco use, diabetes, activity, diet, weight, current symptoms, and when you last saw a doctor. It adds those into a score out of 25 and sorts that score into lower, moderate, or higher risk. All of that math runs in your browser. Nothing is sent anywhere, and nothing is stored.</p>
+
+      <div class="scope-note">
+        <h2>Honest scope</h2>
+        <p>The Open Heart Initiative is an early-stage, community-focused effort. Our screening tool is educational and does not replace a medical professional.</p>
+      </div>
+
+      <div class="page-cta">
+        <button class="btn btn-primary btn-lg" data-start>Check your heart risk</button>
+        <p class="tool-note">A free educational screening tool, not a diagnosis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PREVENTION ============ -->
+<section id="view-prevention" class="hidden">
+  <div class="page">
+    <div class="wrap wrap-tight">
+      <p class="eyebrow">Pillar one &middot; Prevention</p>
+      <h1 class="page-title">Find out early, while it is still <span class="accent">easy to fix.</span></h1>
+      <p class="page-lede">Most people with high blood pressure feel completely fine, so the only way to know is to check. We do that two ways: free in-person screenings around Richmond, and the risk check on this page.</p>
+
+      <div class="tool-embed">
+        <p class="eyebrow">The heart risk check</p>
+        <h2>Thirteen questions. About five minutes.</h2>
+        <p>Answer honestly and you get a score out of 25, what is driving it, and one clear next step. No name, no account, no cost.</p>
+        <button class="btn btn-primary btn-lg" data-start>Check your heart risk</button>
+        <p class="tool-note">A free educational screening tool, not a diagnosis.</p>
+      </div>
+
+      <h2 class="page-h">Free screenings in the neighborhood</h2>
+      <p class="page-p">We bring blood pressure checks to the places people already go: barbershops, churches, and community spaces, at the same spot every month. We also loan home blood pressure cuffs to people who need to track their numbers between visits.</p>
+
+      <h2 class="page-h">What happens at a screening</h2>
+      <div class="todo">Step-by-step walkthrough to come, once the protocol is finalized with our clinical advisor.</div>
+
+      <h2 class="page-h">What the tool collects</h2>
+      <div class="todo">Full data note to come.</div>
+      <p class="page-p">What we can say today: your answers are scored in your own browser and are never sent to us or to anyone else. The one exception is your ZIP code, and only if you choose to enter it. It goes to our clinic-lookup service to find nearby health centers, and it is not stored after that. You can skip the ZIP step and still see your full results.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section id="view-education" class="hidden">
+  <div class="page">
+    <div class="wrap wrap-tight">
+      <p class="eyebrow">Pillar two &middot; Education</p>
+      <h1 class="page-title">Heart health in <span class="accent">plain words.</span></h1>
+      <p class="page-lede">No jargon, no lectures. Short reads on what your numbers mean, what actually helps, and when it is time to see someone. We are adding to this library as we go, in English and Spanish.</p>
+      <h2 class="page-h">Reading library</h2>
+      <div class="res-lib" id="reslib"></div>
+      <div class="page-cta">
+        <button class="btn btn-primary btn-lg" data-start>Check your heart risk</button>
+        <p class="tool-note">A free educational screening tool, not a diagnosis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACCESS / FIND CARE ============ -->
+<section id="view-access" class="hidden">
+  <div class="page">
+    <div class="wrap wrap-tight">
+      <p class="eyebrow">Pillar three &middot; Access</p>
+      <h1 class="page-title">Here&rsquo;s where to <span class="accent">go next.</span></h1>
+      <p class="page-lede">Knowing your risk only matters if you can do something about it. These are places that will see you whether or not you have insurance, and charge based on what you can afford, often nothing at all.</p>
+
+      <div class="finder">
+        <h2>Search by ZIP code</h2>
+        <p>Community health centers are federally funded to serve everyone. Enter your ZIP and we will show the closest ones.</p>
+        <form class="zip-row" id="accessform" autocomplete="off">
+          <input class="zip-input" id="accesszip" inputmode="numeric" maxlength="5" placeholder="&bull;&bull;&bull;&bull;&bull;" aria-label="5-digit ZIP code">
+          <button type="submit" class="btn btn-primary btn-lg">Find clinics</button>
+        </form>
+        <p class="zip-err" id="accesserr">Please enter a 5-digit ZIP code.</p>
+        <div class="clinic-list" id="accesslist"></div>
+        <a class="btn btn-ghost" href="https://findahealthcenter.hrsa.gov/" target="_blank" rel="noopener">Browse the full national directory</a>
+      </div>
+
+      <h2 class="page-h">Our referral partners</h2>
+      <p class="page-p">Places we know, and send people to by name.</p>
+      <div class="partners" id="partners"></div>
+
+      <h2 class="page-h">Help paying for medication</h2>
+      <div class="res-links">
+        <a class="res-link" href="https://www.needymeds.org" target="_blank" rel="noopener"><span>NeedyMeds<span class="sub">Programs that bring down the cost of prescriptions</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="scope-note">
+        <h2>If it is an emergency</h2>
+        <p>Chest pain, pressure or tightness, sudden shortness of breath, or a blood pressure reading of 180/120 or higher: do not wait on a website. Call <a href="tel:911">911</a> or go to the nearest emergency room. ERs must treat you in an emergency, insured or not.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECOVERY ============ -->
+<section id="view-recovery" class="hidden">
+  <div class="page">
+    <div class="wrap wrap-tight">
+      <p class="eyebrow">Pillar four &middot; Recovery</p>
+      <h1 class="page-title">Nobody should manage this <span class="accent">alone.</span></h1>
+      <p class="page-lede">A diagnosis or a heart event is the start of something, not the end of it. This pillar is the one we are still building, and we would rather say so than pretend otherwise.</p>
+
+      <h2 class="page-h">What this will cover</h2>
+      <ul class="plain-list">
+        <li>Understanding your medications, and what to do about side effects</li>
+        <li>Warning signs worth acting on, and which ones can wait</li>
+        <li>Getting connected to cardiac rehab</li>
+        <li>Free re-checks, so your progress is tracked over time</li>
       </ul>
-    </div>
-  </div>
 
-  <div class="quote">
-    <div class="wrap">
-      <blockquote>
-        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-        Every American deserves a clear answer about their heart, insured or not.
-      </blockquote>
-      <p class="quote-cite">the OpenHeart mission</p>
-    </div>
-  </div>
+      <h2 class="page-h">Ongoing support resources</h2>
+      <div class="todo">Resource list to come.</div>
 
-  <div class="section" id="about">
-    <div class="wrap about-grid">
-      <div>
-        <p class="eyebrow">About</p>
-        <h2>What Open Heart <span class="accent">is.</span></h2>
-      </div>
-      <div class="about-body">
-        <p>The Open Heart Initiative is a student-founded organization bringing free heart health screenings, education, and care navigation to underserved communities in Richmond, VA.</p>
-        <p>High blood pressure is called "the silent killer": it has no symptoms, and many people are living with it without knowing. We meet people where they already are, in barbershops, churches, and community spaces, check their numbers for free, and help connect anyone at risk to affordable care.</p>
+      <h2 class="page-h">Checking in</h2>
+      <p class="page-p">We want to know whether people we refer actually reach care, because that is the only real measure of whether any of this is working. A simple check-in is on the way.</p>
+      <div class="todo">Check-in form to come.</div>
+
+      <div class="page-cta">
+        <a class="btn btn-ghost btn-lg" href="#/involved">Get involved</a>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="section how-section" id="how">
-    <div class="wrap">
-      <div class="section-head center">
-        <p class="eyebrow">How it works</p>
-        <h2>Three steps. <span class="accent">That&rsquo;s the whole thing.</span></h2>
+<!-- ============ GET INVOLVED ============ -->
+<section id="view-involved" class="hidden">
+  <div class="page">
+    <div class="wrap wrap-tight">
+      <p class="eyebrow">Get involved</p>
+      <h1 class="page-title">This works because people <span class="accent">show up.</span></h1>
+      <p class="page-lede">Volunteers, clinical partners, community spaces willing to host a screening, and anyone with a question: we would like to hear from you.</p>
+
+      <h2 class="page-h">Ways to help</h2>
+      <div class="involve-grid">
+        <div class="involve">
+          <h3>Volunteer</h3>
+          <p>Help run screenings, hand out materials, or translate resources into Spanish.</p>
+        </div>
+        <div class="involve">
+          <h3>Partner with us</h3>
+          <p>Clinics, churches, barbershops, and community organizations who want to host or take referrals.</p>
+        </div>
+        <div class="involve">
+          <h3>Ask a question</h3>
+          <p>About the screenings, the risk tool, or anything else on this site.</p>
+        </div>
       </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <h3>Answer honestly</h3>
-          <p>Thirteen simple questions about you, your history, and your habits. No medical words, no trick questions, no judgment.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <h3>See your results</h3>
-          <p>A score from 0 to 25, explained in plain words: what it means and which factors are driving it.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <h3>Take one next step</h3>
-          <p>Free and sliding-scale clinics near your ZIP, telehealth options, and exactly what to ask for when you get there.</p>
-        </div>
-      </div>
+
+      <h2 class="page-h">Contact</h2>
+      <div class="todo">Contact email to come.</div>
     </div>
   </div>
-
-  <div class="section who" id="who">
-    <div class="wrap who-grid">
-      <div>
-        <p class="eyebrow">Who this is for</p>
-        <h2>Made for the people medicine <span class="accent">overlooks.</span></h2>
-        <p class="who-note">If any of these sound like you, Open Heart was built with you in mind.</p>
-        <p class="who-promise">No insurance needed. No cost. No judgment.</p>
-      </div>
-      <ul class="who-list">
-        <li>Richmond residents in underserved neighborhoods without easy access to a doctor</li>
-        <li>Anyone who hasn't had their blood pressure checked in over a year</li>
-        <li>People who are uninsured or worried about the cost of care</li>
-        <li>Families who want to understand and protect their heart health</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="section pillars-section" id="pillars">
-    <div class="wrap">
-      <div class="section-head center">
-        <p class="eyebrow">What we do</p>
-        <h2>The four <span class="accent">pillars.</span></h2>
-      </div>
-      <div class="pillars">
-        <div class="pillar">
-          <svg class="pillar-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21C9 18.8 3.6 14.7 2.3 10.6 1.2 7.2 3.3 4 6.6 4c2.1 0 3.6 1 4.6 2.6h1.6C13.8 5 15.3 4 17.4 4c3.3 0 5.4 3.2 4.3 6.6C20.4 14.7 15 18.8 12 21Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-          <h3>Prevention</h3>
-          <p>Free blood pressure screenings at trusted community spots, same place every month. Home blood pressure cuffs loaned to those who need to track their numbers.</p>
-        </div>
-        <div class="pillar">
-          <svg class="pillar-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15.5H6.5A2.5 2.5 0 0 0 4 21V5.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
-          <h3>Education</h3>
-          <p>Plain-language heart health teaching: what your numbers mean, heart-healthy eating on a real budget, and how to spot the signs of a stroke (F.A.S.T.). Available in English and Spanish.</p>
-        </div>
-        <div class="pillar">
-          <svg class="pillar-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
-          <h3>Access</h3>
-          <p>We don't just hand you a referral. We help you book the appointment, find affordable medication, and get to the clinic. Real help, all the way to care.</p>
-        </div>
-        <div class="pillar">
-          <svg class="pillar-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13.5 8 9l3.5 6L15 6l2.5 7.5H20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 19h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <h3>Recovery</h3>
-          <p>Support after a heart event: understanding your medications, warning signs to watch for, and getting connected to cardiac rehab. Plus free re-checks so your progress is tracked over time.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section numbers-section" id="numbers">
-    <div class="wrap numbers-grid">
-      <div>
-        <p class="eyebrow">Know your numbers</p>
-        <h2>Your blood pressure has two numbers, <span class="accent">like 120/80.</span></h2>
-        <p class="who-note">Most people with high blood pressure feel completely fine. The only way to know is to check.</p>
-        <button class="btn btn-primary" data-start style="margin-top:26px">Check your risk in 5 minutes</button>
-      </div>
-      <div class="bp-scale">
-        <div class="bp-row bp-good">
-          <span class="bp-range">Under 120/80</span>
-          <span class="bp-label"><b>Healthy.</b> Keep it up.</span>
-        </div>
-        <div class="bp-row bp-elev">
-          <span class="bp-range">120&ndash;139 / 80&ndash;89</span>
-          <span class="bp-label"><b>Elevated.</b> Time to pay attention.</span>
-        </div>
-        <div class="bp-row bp-high">
-          <span class="bp-range">140+ / 90+</span>
-          <span class="bp-label"><b>High.</b> Talk to a doctor.</span>
-        </div>
-        <div class="bp-row bp-crisis">
-          <span class="bp-range">180/120 or higher</span>
-          <span class="bp-label"><b>Dangerous.</b> Seek care today.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="cta-band">
-    <div class="wrap">
-      <h2><span class="accent">Five minutes.</span><br>For the people who need you around.</h2>
-      <svg class="ekg-mini" viewBox="0 0 600 60" aria-hidden="true"><path d="M0 34 H210 L226 26 L242 34 H300 L314 8 L328 56 L340 34 H600" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div><button class="btn btn-primary btn-lg" data-start>Start my heart check</button></div>
-    </div>
-  </div>
-
 </section>
 
 <!-- ============ QUIZ ============ -->
@@ -214,6 +350,7 @@
     </div>
     <div class="track" role="progressbar" aria-label="Progress" aria-valuemin="1" aria-valuemax="13" aria-valuenow="1" id="qbar"><div class="fill" id="qfill"></div></div>
     <form id="qcard" class="q-card" autocomplete="off" aria-live="polite"></form>
+    <p class="tool-note tool-note-left">A free educational screening tool, not a diagnosis.</p>
   </div>
 </section>
 
@@ -226,15 +363,58 @@
 
 <footer>
   <div class="wrap">
-    <div class="foot-brand">
+    <a class="foot-brand" href="#/">
       <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21C9 18.8 3.6 14.7 2.3 10.6 1.2 7.2 3.3 4 6.6 4c2.1 0 3.6 1 4.6 2.6h1.6C13.8 5 15.3 4 17.4 4c3.3 0 5.4 3.2 4.3 6.6C20.4 14.7 15 18.8 12 21Z" fill="#c0392b"/><polyline points="4.5,11.5 9,11.5 10.6,8.6 12.6,14.2 14.2,11.5 19.5,11.5" fill="none" stroke="#f3f6f9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span class="brand-name">OpenHeart</span><span class="brand-sub">Initiative</span>
+    </a>
+
+    <nav class="foot-cols" aria-label="Footer">
+      <div class="foot-col">
+        <h2>Check your risk</h2>
+        <ul>
+          <li><a href="#/check">Start the heart check</a></li>
+          <li><a href="#/">How it works</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="#/prevention">Prevention</a></li>
+          <li><a href="#/education">Education</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>Get care</h2>
+        <ul>
+          <li><a href="#/access">Find care near you</a></li>
+          <li><a href="#/recovery">After a diagnosis</a></li>
+          <li><a href="https://findahealthcenter.hrsa.gov/" target="_blank" rel="noopener">Find a health center</a></li>
+          <li><a href="https://www.needymeds.org" target="_blank" rel="noopener">Prescription savings</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>The initiative</h2>
+        <ul>
+          <li><a href="#/about">About us</a></li>
+          <li><a href="#/involved">Get involved</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <p class="foot-more">The Open Heart Initiative provides free health screenings and education. We do not diagnose, treat, or provide medical advice. If you are experiencing a medical emergency, <strong>call 911</strong>.</p>
+
+    <div class="foot-bar">
+      <p class="foot-copy">Copyright &copy; 2026 The Open Heart Initiative. All rights reserved.</p>
+      <ul class="foot-legal">
+        <li>Heart model &ldquo;<a href="https://sketchfab.com/3d-models/human-heart-94505ec969cf468684d4393a3de99478" rel="noopener" target="_blank">Human heart</a>&rdquo; by <a href="https://sketchfab.com/thunk3d.scanner" rel="noopener" target="_blank">thunk3d.scanner</a></li>
+        <li><a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank">CC BY 4.0</a>, recoloured</li>
+      </ul>
+      <p class="foot-region">Richmond, Virginia</p>
     </div>
-    <p class="foot-small">The Open Heart Initiative provides free health screenings and education. We do not diagnose, treat, or provide medical advice. If you are experiencing a medical emergency, <strong>call 911</strong>.</p>
-    <p class="foot-small">&copy; 2026 The Open Heart Initiative &middot; Built with care, for everyone.</p>
   </div>
 </footer>
 
+<script src="content.js" defer></script>
 <script src="app.js" defer></script>
 </body>
 </html>
